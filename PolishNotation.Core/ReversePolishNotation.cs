@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace PolishNotation.Core
 {
-    public class ReversePolishNotation : PolishNotationBase
+    public class ReversePolishNotation
     {
         public static float Resolve(string expression)
         {
             float value = 0.0f;
-            List<Token> tokens = parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
 
             Stack<Token> values = new Stack<Token>();
 
@@ -36,7 +36,7 @@ namespace PolishNotation.Core
             }
             catch
             {
-                throw new Exception(string.Format(MalformedExpresion, expression));
+                throw new Exception(string.Format(PolishNotationHelper.MalformedExpresion, expression));
             }
 
             if(values.Count.Equals(1))
@@ -45,7 +45,7 @@ namespace PolishNotation.Core
             }
             else
             {
-                throw new Exception(string.Format(MalformedExpresion, expression));
+                throw new Exception(string.Format(PolishNotationHelper.MalformedExpresion, expression));
             }
             
             return value;

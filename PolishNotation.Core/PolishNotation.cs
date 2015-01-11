@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace PolishNotation.Core
 {
-    public class PolishNotation : PolishNotationBase
+    public class PolishNotation
     {
         public static float Resolve(string expression)
         {
             float value = 0.0f;
-           
+            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+
             return value;
         }
     }

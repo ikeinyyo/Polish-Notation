@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace PolishNotation.Core
 {
-    public class PolishNotationBase
+    public static class PolishNotationHelper
     {
-        protected const string MalformedExpresion = "Malformed expression: {0}";
-        protected static List<Token> parseExpression(string expression)
+        public const string MalformedExpresion = "Malformed expression: {0}";
+        public static List<Token> parseExpression(string expression)
         {
             List<Token> tokens = new List<Token>();
             var tokensStr = expression.Split(' ');
