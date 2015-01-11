@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Models\Token.cs" />
     <Compile Include="PolishNotation.cs" />
-    <Compile Include="PolishNotationBase.cs" />
+    <Compile Include="PolishNotationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReversePolishNotation.cs" />
   </ItemGroup>
