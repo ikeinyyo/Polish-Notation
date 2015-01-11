@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PolishNotation.Core
 {
-    public class ReversePolishNotation
+    public class ReversePolishNotation : PolishNotationBase
     {
         public static float Resolve(string expression)
         {
@@ -16,39 +16,40 @@ namespace PolishNotation.Core
 
             Stack<Token> values = new Stack<Token>();
 
-            foreach (var token in tokens)
+            try
             {
-                if (token.Type.Equals(Token.TokenType.Value))
+
+                foreach (var token in tokens)
                 {
-                    values.Push(token);
-                }
-                else if (token.Type.Equals(Token.TokenType.Operator))
-                {
-                    Token value1 = values.Pop();
-                    Token value2 = values.Pop();
-                    float result = token.GetResult(value1.GetValue(), value2.GetValue());
-                    values.Push(new Token(result));
+                    if (token.Type.Equals(Token.TokenType.Value))
+                    {
+                        values.Push(token);
+                    }
+                    else if (token.Type.Equals(Token.TokenType.Operator))
+                    {
+                        Token value1 = values.Pop();
+                        Token value2 = values.Pop();
+                        float result = token.GetResult(value1.GetValue(), value2.GetValue());
+                        values.Push(new Token(result));
+                    }
                 }
             }
+            catch
+            {
+                throw new Exception(string.Format(MalformedExpresion, expression));
+            }
 
+            if(values.Count.Equals(1))
+            {
+                value = values.Pop().GetValue();
+            }
+            else
+            {
+                throw new Exception(string.Format(MalformedExpresion, expression));
+            }
+            
             value = values.Pop().GetValue();
             return value;
         }
-
-
-        #region Private Methods
-        private static List<Token> parseExpression(string expression)
-        {
-            List<Token> tokens = new List<Token>();
-            var tokensStr = expression.Split(' ');
-
-            foreach (var token in tokensStr)
-            {
-                tokens.Add(new Token(token));
-            }
-
-            return tokens;
-        }
-        #endregion
     }
 }
