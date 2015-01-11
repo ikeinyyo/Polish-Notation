@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PolishNotation.Core
 {
-    public static class PolishNotation
+    public class ReversePolishNotation
     {
         public static float Resolve(string expression)
         {
@@ -18,11 +18,11 @@ namespace PolishNotation.Core
 
             foreach (var token in tokens)
             {
-                if(token.Type.Equals(Token.TokenType.Value))
+                if (token.Type.Equals(Token.TokenType.Value))
                 {
                     values.Push(token);
                 }
-                else if(token.Type.Equals(Token.TokenType.Operator))
+                else if (token.Type.Equals(Token.TokenType.Operator))
                 {
                     Token value1 = values.Pop();
                     Token value2 = values.Pop();

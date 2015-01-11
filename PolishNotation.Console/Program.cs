@@ -10,7 +10,8 @@ namespace PolishNotation.Console
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine(PolishNotation.Core.PolishNotation.Resolve("+ 3 4"));
+            System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.Resolve("3 7 2 * +"));
+            System.Console.ReadLine();
         }
     }
 }
