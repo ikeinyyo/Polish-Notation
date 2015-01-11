@@ -48,7 +48,6 @@ namespace PolishNotation.Core
                 throw new Exception(string.Format(MalformedExpresion, expression));
             }
             
-            value = values.Pop().GetValue();
             return value;
         }
     }
