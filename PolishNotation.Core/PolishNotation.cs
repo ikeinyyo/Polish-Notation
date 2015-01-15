@@ -13,30 +13,33 @@ namespace PolishNotation.Core
         {
             float value = 0.0f;
             List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            Stack<Token> operators = new Stack<Token>();
+            Stack<Token> values = new Stack<Token>();
 
             bool changes = false;
             do
             {
                 changes = false;
-                Token op = null; // Operator
-                Token value1 = null; // Value 1
-                Token value2 = null; // Value 2
 
                 foreach (var token in tokens)
                 {
+
                     if(token.Type.Equals(Token.TokenType.Operator))
                     {
-                        op = token;
-                        value1 = value2 = null;
+                        operators.Push(token);
+                        values.Clear();
                     }
-                    else if (op != null && value1 == null && token.Type.Equals(Token.TokenType.Value))
+                    else if (token.Type.Equals(Token.TokenType.Value))
                     {
-                        value1 = token;
-                        value2 = null;
+                        values.Push(token);
                     }
-                    else if (op != null && value1 != null && value2 == null && token.Type.Equals(Token.TokenType.Value))
+
+                    if (operators.Count >= 1 && values.Count >= 2)
                     {
-                        value2 = token;
+                        Token op = operators.Pop();
+                        Token value1 = values.Pop(); // Value 1
+                        Token value2 = values.Pop(); // Value 2
+                   
                         int index = tokens.IndexOf(op);
                         tokens.Remove(op);
                         tokens.Remove(value1);
@@ -45,10 +48,6 @@ namespace PolishNotation.Core
                         tokens.Insert(index, new Token(result));
                         changes = true;
                         break;
-                    }
-                    else
-                    {
-                        op = value1 = value2 = null;
                     }
                 }
 

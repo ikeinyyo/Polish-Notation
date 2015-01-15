@@ -13,7 +13,7 @@ namespace PolishNotation.Console
             try
             {
                 string expressionRPN = "7 4 4 * +";
-                string expressionPN = "+ * 4 4 7";
+                string expressionPN = "- * / 15 - 7 + 1 1 3 + 2 + 1 1";
                 System.Console.WriteLine(string.Format("Reverse Polish Notation expression: {0}", expressionRPN));
                 System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.Resolve(expressionRPN));
 
