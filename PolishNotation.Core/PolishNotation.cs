@@ -37,14 +37,14 @@ namespace PolishNotation.Core
                     if (operators.Count >= 1 && values.Count >= 2)
                     {
                         Token op = operators.Pop();
-                        Token value1 = values.Pop(); // Value 1
-                        Token value2 = values.Pop(); // Value 2
+                        Token second = values.Pop(); // Value 1
+                        Token first = values.Pop(); // Value 2
                    
                         int index = tokens.IndexOf(op);
                         tokens.Remove(op);
-                        tokens.Remove(value1);
-                        tokens.Remove(value2);
-                        float result = op.GetResult(value1.GetValue(), value2.GetValue());
+                        tokens.Remove(first);
+                        tokens.Remove(second);
+                        float result = op.GetResult(first.GetValue(), second.GetValue());
                         tokens.Insert(index, new Token(result));
                         changes = true;
                         break;

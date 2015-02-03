@@ -41,7 +41,7 @@ namespace PolishNotation.Core.Models
                 Text = tokens.First().Text;
                 foreach (var token in tokens.Skip(1))
                 {
-                    Text += token.Text;
+                    Text += string.Format(" {0}", token.Text);
                 }
             }
         }
