@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolishNotation.Core", "Poli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolishNotation.Console", "PolishNotation.Console\PolishNotation.Console.csproj", "{2078DB0E-8706-4115-B4CC-F24B1AFE3FBB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5D6B0775-8177-469A-99C8-DFADA58F69D9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolishNotation.Test", "PolishNotation.Test\PolishNotation.Test.csproj", "{5B486CDD-0024-4465-965A-45D7F271F30B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +28,10 @@ Global
 		{2078DB0E-8706-4115-B4CC-F24B1AFE3FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2078DB0E-8706-4115-B4CC-F24B1AFE3FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2078DB0E-8706-4115-B4CC-F24B1AFE3FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B486CDD-0024-4465-965A-45D7F271F30B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B486CDD-0024-4465-965A-45D7F271F30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B486CDD-0024-4465-965A-45D7F271F30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B486CDD-0024-4465-965A-45D7F271F30B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
