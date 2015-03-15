@@ -120,7 +120,12 @@ namespace PolishNotation.Core
                         }
                         else if (token.Type.Equals(Token.TokenType.Value) || token.Type.Equals(Token.TokenType.Expression))
                         {
+                            if (operators.Count == 0)
+                            {
+                                values.Clear();
+                            }
                             values.Push(token);
+
                         }
 
                         if (operators.Count >= 1 && values.Count >= 2)

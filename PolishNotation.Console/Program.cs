@@ -17,6 +17,7 @@ namespace PolishNotation.Console
                 string Reverse = "5 1 2 + 4 * + 3 -";
                 string Reverse2 = "6 4 5 + * 25 2 3 + / -";
                 string Infix1 = "3 + 4";
+                string Infix2 = "5 + 3 * 4 + 5 + 6 / 2";
 
                 System.Console.WriteLine(string.Format("Reverse Polish Notation expression: {0}", expressionRPN));
                 System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.Resolve(expressionRPN));
@@ -37,6 +38,8 @@ namespace PolishNotation.Console
                 
                 
                 System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.FromInfix(Infix1));
+                System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.FromInfix(Infix2));
+
 
 
             }
