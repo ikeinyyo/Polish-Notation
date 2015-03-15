@@ -21,5 +21,14 @@ namespace PolishNotation.Test
             float result = PolishNotation.Core.PolishNotation.Resolve(expression);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData("3 + 4", "3 4 +")]
+        [InlineData("5 * 4 * 3 + 2", "5 4 * 3 * 2 +")]
+        public void InfixToReversePolishNotationTest(string expression, string expected)
+        {
+            string result = PolishNotation.Core.ReversePolishNotation.FromInfix(expression);
+            Assert.Equal(expected, result);
+        }
     }
 }
