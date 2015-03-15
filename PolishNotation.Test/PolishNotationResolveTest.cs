@@ -25,9 +25,9 @@ namespace PolishNotation.Test
         [Theory]
         [InlineData("3 + 4", "3 4 +")]
         [InlineData("5 * 4 * 3 + 2", "5 4 * 3 * 2 +")]
-        [InlineData("5 + 3 * 4 + 5 + 6 / 2", "4 3 *")]
-        [InlineData("5 * 4 * 3 + 2", "5 4 * 3 * 2 +")]
-        [InlineData("5 * 4 * 3 + 2", "5 4 * 3 * 2 +")]
+        [InlineData("5 + 3 * 4 + 5 + 6 / 2", "5 3 4 * + 5 + 6 2 / +")]
+        [InlineData("2 * 10 / 5", "2 10 * 5 /")]
+        [InlineData("2 + 3 * 5 + 6 * 3 + 4 / 2 * 4 + 6", "2 3 5 * + 6 3 * + 4 2 / 4 * + 6 +")]
 
         public void InfixToReversePolishNotationTest(string expression, string expected)
         {

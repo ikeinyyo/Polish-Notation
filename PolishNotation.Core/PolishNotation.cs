@@ -12,7 +12,7 @@ namespace PolishNotation.Core
         public static float Resolve(string expression)
         {
             float value = 0.0f;
-            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
             Stack<Token> operators = new Stack<Token>();
             Stack<Token> values = new Stack<Token>();
 
@@ -61,7 +61,7 @@ namespace PolishNotation.Core
         public static string Reverse(string expression)
         {
             string reverse = string.Empty;
-            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
             Stack<Token> operators = new Stack<Token>();
             Stack<Token> expressions = new Stack<Token>();
 

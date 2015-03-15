@@ -12,7 +12,7 @@ namespace PolishNotation.Core
         public static float Resolve(string expression)
         {
             float value = 0.0f;
-            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
 
             Stack<Token> values = new Stack<Token>();
 
@@ -54,7 +54,7 @@ namespace PolishNotation.Core
         public static string Reverse(string expression)
         {
             string reverse = string.Empty;
-            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
 
             Stack<Token> expressions = new Stack<Token>();
 
@@ -95,7 +95,7 @@ namespace PolishNotation.Core
         public static string FromInfix(string expression)
         {
             string reverse = string.Empty;
-            List<Token> tokens = PolishNotationHelper.parseExpression(expression);
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
             Stack<Token> values = new Stack<Token>();
             Stack<Token> operators = new Stack<Token>();
 
@@ -125,7 +125,6 @@ namespace PolishNotation.Core
                                 values.Clear();
                             }
                             values.Push(token);
-
                         }
 
                         if (operators.Count >= 1 && values.Count >= 2)
@@ -134,17 +133,18 @@ namespace PolishNotation.Core
                             Token second = values.Pop(); // Value 1
                             Token first = values.Pop(); // Value 2
 
-                            int index = tokens.IndexOf(op);
+                            int index = tokens.IndexOf(first);
                             tokens.Remove(op);
                             tokens.Remove(first);
                             tokens.Remove(second);
+                            Token result = new Token(new List<Token>() { first, second, op });
                             if (tokens.Count > index)
                             {
-                                tokens.Insert(index, new Token(new List<Token>() { first, second, op }));
+                                tokens.Insert(index, result);
                             }
                             else
                             {
-                                tokens.Add(new Token(new List<Token>() { first, second, op }));
+                                tokens.Add(result);
                             }
                             changes = true;
                             break;
@@ -154,7 +154,14 @@ namespace PolishNotation.Core
                 } while (!tokens.Count.Equals(1) && changes);
             }
 
-            reverse = tokens.First().Text;
+            if (tokens.Count.Equals(1))
+            {
+                reverse = tokens.First().Text;
+            }
+            else
+            {
+                throw new Exception(string.Format(PolishNotationHelper.MalformedExpresion, expression));
+            }
 
             return reverse;
         }
