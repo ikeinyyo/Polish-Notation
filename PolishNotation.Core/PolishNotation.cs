@@ -105,5 +105,79 @@ namespace PolishNotation.Core
 
             return reverse;
         }
+
+        public static string FromInfix(string expression)
+        {
+            string reverse = string.Empty;
+            List<Token> tokens = PolishNotationHelper.ParseExpression(expression);
+            Stack<Token> values = new Stack<Token>();
+            Stack<Token> operators = new Stack<Token>();
+
+            List<List<string>> operandsGroups = new List<List<string>>();
+            operandsGroups.Add(new List<string>() { "*", "/" });
+            operandsGroups.Add(new List<string>() { "+", "-" });
+
+            foreach (var operands in operandsGroups)
+            {
+                bool changes = false;
+                do
+                {
+                    changes = false;
+                    operators.Clear();
+                    values.Clear();
+
+                    foreach (var token in tokens)
+                    {
+                        if (token.Type.Equals(Token.TokenType.Operator) && operands.Contains(token.Text))
+                        {
+                            operators.Push(token);
+                        }
+                        else if (token.Type.Equals(Token.TokenType.Value) || token.Type.Equals(Token.TokenType.Expression))
+                        {
+                            if (operators.Count == 0)
+                            {
+                                values.Clear();
+                            }
+                            values.Push(token);
+                        }
+
+                        if (operators.Count >= 1 && values.Count >= 2)
+                        {
+                            Token op = operators.Pop();
+                            Token second = values.Pop(); // Value 1
+                            Token first = values.Pop(); // Value 2
+
+                            int index = tokens.IndexOf(first);
+                            tokens.Remove(op);
+                            tokens.Remove(first);
+                            tokens.Remove(second);
+                            Token result = new Token(new List<Token>() { op, first, second });
+                            if (tokens.Count > index)
+                            {
+                                tokens.Insert(index, result);
+                            }
+                            else
+                            {
+                                tokens.Add(result);
+                            }
+                            changes = true;
+                            break;
+                        }
+                    }
+
+                } while (!tokens.Count.Equals(1) && changes);
+            }
+
+            if (tokens.Count.Equals(1))
+            {
+                reverse = tokens.First().Text;
+            }
+            else
+            {
+                throw new Exception(string.Format(PolishNotationHelper.MalformedExpresion, expression));
+            }
+
+            return reverse;
+        }
     }
 }
