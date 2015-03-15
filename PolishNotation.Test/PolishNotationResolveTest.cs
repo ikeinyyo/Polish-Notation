@@ -16,6 +16,7 @@ namespace PolishNotation.Test
         [InlineData("- * / 15 - 7 + 1 1 3 + 2 + 1 1", 5.0f)]
         [InlineData("- + - * 3 4 * 5 2 3 8", -3.0f)]
         [InlineData("- * 3 0 * 4 0", 0.0f)]
+        [InlineData("+ + + + 2 * 3 5 * 6 3 * / 4 2 4 6", 49.0f)]
         public void PolishNotationResolve(string expression, float expected)
         {
             float result = PolishNotation.Core.PolishNotation.Resolve(expression);
@@ -23,15 +24,16 @@ namespace PolishNotation.Test
         }
 
         [Theory]
-        [InlineData("3 + 4", "3 4 +")]
-        [InlineData("5 * 4 * 3 + 2", "5 4 * 3 * 2 +")]
-        [InlineData("5 + 3 * 4 + 5 + 6 / 2", "5 3 4 * + 5 + 6 2 / +")]
-        [InlineData("2 * 10 / 5", "2 10 * 5 /")]
-        [InlineData("2 + 3 * 5 + 6 * 3 + 4 / 2 * 4 + 6", "2 3 5 * + 6 3 * + 4 2 / 4 * + 6 +")]
-
-        public void InfixToReversePolishNotationTest(string expression, string expected)
+        [InlineData("3 4 +", 7.0f)]
+        [InlineData("5 6 7 * -", -37.0f)]
+        [InlineData("5 6 - 7 *", -7.0f)]
+        [InlineData("15 7 1 1 + - / 3 * 2 1 1 + + -", 5.0f)]
+        [InlineData("3 4 * 5 2 * - 3 + 8 -", -3.0f)]
+        [InlineData("3 0 * 4 0 * -", 0.0f)]
+        [InlineData("2 3 5 * + 6 3 * + 4 2 / 4 * + 6 +", 49.0f)]
+        public void ReversePolishNotationResolve(string expression, float expected)
         {
-            string result = PolishNotation.Core.ReversePolishNotation.FromInfix(expression);
+            float result = PolishNotation.Core.ReversePolishNotation.Resolve(expression);
             Assert.Equal(expected, result);
         }
     }

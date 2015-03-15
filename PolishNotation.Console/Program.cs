@@ -42,6 +42,7 @@ namespace PolishNotation.Console
                 System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.FromInfix(Infix2));
                 System.Console.WriteLine(PolishNotation.Core.ReversePolishNotation.FromInfix(Infix3));
 
+                System.Console.WriteLine(PolishNotation.Core.PolishNotation.Reverse("- + - * 3 4 * 5 2 3 8"));
             }
             catch(Exception ex)
             {
